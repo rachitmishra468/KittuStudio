@@ -47,9 +47,11 @@ export function ContactPage() {
     } catch (error) {
       setSubmissionStatus('error')
       setSubmissionError(
-        error instanceof Error
-          ? error.message
-          : 'Unable to send your message. Please try again.',
+        error instanceof TypeError && error.message === 'Failed to fetch'
+          ? `EmailJS could not be reached. Add this site origin (${window.location.origin}) in EmailJS → Account → Security → Allowed Origins, then reload and try again.`
+          : error instanceof Error
+            ? error.message
+            : 'Unable to send your message. Please try again.',
       )
     }
   }
