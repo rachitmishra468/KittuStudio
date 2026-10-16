@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { categories, OFFER_PRICE, products as initialProducts, REGULAR_PRICE, type Product } from './data'
+import { categories, OFFER_PRICE, products as initialProducts, type Product } from './data'
 
 type CartItem = {
   productId: number
@@ -14,7 +14,6 @@ type StoreContextValue = {
   wishlist: number[]
   darkMode: boolean
   isCartOpen: boolean
-  searchTerm: string
   selectedCategory: string
   priceCap: number
   sortBy: SortOption
@@ -23,7 +22,6 @@ type StoreContextValue = {
   shipping: number
   tax: number
   total: number
-  setSearchTerm: (value: string) => void
   setSelectedCategory: (value: string) => void
   setPriceCap: (value: number) => void
   setSortBy: (value: SortOption) => void
@@ -43,6 +41,7 @@ type StoreContextValue = {
 }
 
 const StoreContext = createContext<StoreContextValue | undefined>(undefined)
+const initialProductsById = new Map(initialProducts.map((product) => [product.id, product]))
 
 const getStoredValue = <T,>(key: string, fallback: T): T => {
   if (typeof window === 'undefined') {
@@ -62,17 +61,17 @@ const getStoredValue = <T,>(key: string, fallback: T): T => {
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>(() =>
-    getStoredValue<Product[]>('kittu-catalog', initialProducts).map((product) => ({
-      ...product,
-      price: OFFER_PRICE,
-      originalPrice: REGULAR_PRICE,
-    })),
+    getStoredValue<Product[]>('kittu-catalog', initialProducts).map((product) => {
+      const currentProduct = initialProductsById.get(product.id)
+      return currentProduct
+        ? { ...product, ...currentProduct, price: OFFER_PRICE }
+        : { ...product, price: OFFER_PRICE }
+    }),
   )
   const [cart, setCart] = useState<CartItem[]>(() => getStoredValue('kittu-cart', []))
   const [wishlist, setWishlist] = useState<number[]>(() => getStoredValue('kittu-wishlist', []))
   const [darkMode, setDarkMode] = useState<boolean>(() => getStoredValue('kittu-dark-mode', false))
   const [isCartOpen, setIsCartOpen] = useState(false)
-  const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [priceCap, setPriceCap] = useState(OFFER_PRICE)
   const [sortBy, setSortBy] = useState<SortOption>('featured')
@@ -146,17 +145,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const toggleCart = () => setIsCartOpen((current) => !current)
 
   const addCatalogProduct = (product: Product) => {
-    setProducts((current) => [
-      { ...product, price: OFFER_PRICE, originalPrice: REGULAR_PRICE },
-      ...current,
-    ])
+    setProducts((current) => [{ ...product, price: OFFER_PRICE }, ...current])
   }
 
   const updateCatalogProduct = (productId: number, updates: Partial<Product>) => {
     setProducts((current) =>
       current.map((product) =>
         product.id === productId
-          ? { ...product, ...updates, price: OFFER_PRICE, originalPrice: REGULAR_PRICE }
+          ? { ...product, ...updates, price: OFFER_PRICE }
           : product,
       ),
     )
@@ -169,21 +165,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }
 
   const filteredProducts = useMemo(() => {
-    const query = searchTerm.trim().toLowerCase()
-
     return [...products]
       .filter((product) => {
-        const passesSearch =
-          query.length === 0 ||
-          product.name.toLowerCase().includes(query) ||
-          product.category.toLowerCase().includes(query)
-
         const passesCategory =
           selectedCategory === 'All' || product.category === selectedCategory
 
         const passesPrice = product.price <= priceCap
 
-        return passesSearch && passesCategory && passesPrice
+        return passesCategory && passesPrice
       })
       .sort((a, b) => {
         if (sortBy === 'price-low') return a.price - b.price
@@ -191,7 +180,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         if (sortBy === 'rating') return b.rating - a.rating
         return Number(b.featured) - Number(a.featured) || Number(b.bestSeller) - Number(a.bestSeller)
       })
-  }, [products, searchTerm, selectedCategory, priceCap, sortBy])
+  }, [products, selectedCategory, priceCap, sortBy])
 
   const cartCount = useMemo(
     () => cart.reduce((total, item) => total + item.quantity, 0),
@@ -218,7 +207,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       wishlist,
       darkMode,
       isCartOpen,
-      searchTerm,
       selectedCategory,
       priceCap,
       sortBy,
@@ -227,7 +215,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       shipping,
       tax,
       total,
-      setSearchTerm,
       setSelectedCategory,
       setPriceCap,
       setSortBy,
@@ -245,7 +232,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       notify,
       toastMessage,
     }),
-    [products, cart, wishlist, darkMode, isCartOpen, searchTerm, selectedCategory, priceCap, sortBy, cartCount, subtotal, shipping, tax, total, filteredProducts, toastMessage],
+    [products, cart, wishlist, darkMode, isCartOpen, selectedCategory, priceCap, sortBy, cartCount, subtotal, shipping, tax, total, filteredProducts, toastMessage],
   )
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

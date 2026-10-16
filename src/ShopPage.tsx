@@ -3,7 +3,7 @@ import { categories, type Product } from './data'
 import { useStore } from './store'
 
 export function ShopPage() {
-  const { filteredProducts, selectedCategory, setSelectedCategory, priceCap, setPriceCap, sortBy, setSortBy, setSearchTerm } = useStore()
+  const { filteredProducts, selectedCategory, setSelectedCategory, priceCap, setPriceCap, sortBy, setSortBy } = useStore()
 
   const sortOptions = [
     { value: 'featured', label: 'Featured' },
@@ -17,22 +17,12 @@ export function ShopPage() {
       <section className="rounded-[32px] bg-[radial-gradient(circle_at_top,_rgba(248,240,235,0.95),_rgba(234,213,195,0.7))] p-8 dark:bg-[radial-gradient(circle_at_top,_rgba(34,21,18,0.96),_rgba(22,17,15,0.96))]">
         <p className="text-[11px] uppercase tracking-[0.28em] text-[#9a7d6a] dark:text-[#f0cdb2]">Luxury edit</p>
         <h1 className="mt-4 font-serif text-5xl text-[#2b1f1b] dark:text-[#f9efe8]">Women&apos;s Bag Collection</h1>
-        <p className="mt-3 text-base text-[#594842] dark:text-[#e7d0c0]">Every bag ₹999, now ₹499.</p>
+        <p className="mt-3 text-base text-[#594842] dark:text-[#e7d0c0]">Every women&apos;s bag is just ₹499 for a limited time.</p>
       </section>
 
       <div className="grid gap-8 lg:grid-cols-[290px_1fr]">
         <aside className="h-fit rounded-[30px] border border-[#ead9cf] bg-[#fffaf7] p-6 dark:border-[#382d2b] dark:bg-[#1b1514]">
           <div className="space-y-6">
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.28em] text-[#9d7966] dark:text-[#f0cab1]">Search</p>
-              <input
-                type="text"
-                onChange={(event) => setSearchTerm(event.target.value)}
-                placeholder="Search product"
-                className="mt-3 w-full rounded-full border border-[#ead7cb] bg-white px-4 py-3 text-sm text-[#2d201b] outline-none dark:border-[#3c2d2a] dark:bg-[#221c1a] dark:text-[#f8efe9]"
-              />
-            </div>
-
             <div>
               <p className="text-[11px] uppercase tracking-[0.28em] text-[#9d7966] dark:text-[#f0cab1]">Category</p>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -97,7 +87,7 @@ export function ShopPage() {
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {filteredProducts.length === 0 ? (
               <div className="rounded-[28px] border border-dashed border-[#dcc9ba] bg-[#fffaf7] p-10 text-center text-[#4c3b35] dark:border-[#3d2a28] dark:bg-[#1e1715] dark:text-[#f6e4d9] xl:col-span-3">
-                No handbags match your filters. Try a different search or reset the category.
+                No handbags match these filters. Try a different category or price limit.
               </div>
             ) : (
               filteredProducts.map((product: Product) => <ProductCard key={product.id} product={product} />)

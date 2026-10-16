@@ -53,7 +53,7 @@ export function ProductPage() {
                 className="h-[560px] w-full object-cover transition duration-500 hover:scale-110"
               />
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-5 gap-3">
               {product.images.map((image, index) => (
                 <button
                   key={image}
@@ -77,7 +77,7 @@ export function ProductPage() {
             <div className="mt-6 flex items-center gap-3">
               <p className="text-3xl font-semibold text-[#201814] dark:text-[#f9efe8]">{formatPrice(product.price)}</p>
               <p className="text-lg text-[#8e7770] line-through dark:text-[#c7aaa0]">{formatPrice(product.originalPrice)}</p>
-              <span className="rounded-full bg-[#f0dfd3] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#684739] dark:bg-[#392a26] dark:text-[#f3d5c3]">50% off</span>
+              <span className="rounded-full bg-[#f0dfd3] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#684739] dark:bg-[#392a26] dark:text-[#f3d5c3]">{Math.round((1 - product.price / product.originalPrice) * 100)}% off</span>
             </div>
 
             <div className="mt-8 space-y-6">

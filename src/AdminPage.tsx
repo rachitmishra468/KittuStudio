@@ -17,7 +17,13 @@ export function AdminPage() {
       originalPrice: REGULAR_PRICE,
       rating: 4.8,
       reviews: 0,
-      images: ['https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80'],
+      images: [
+        'https://cdn.dummyjson.com/product-images/womens-bags/women-handbag-black/1.webp',
+        'https://cdn.dummyjson.com/product-images/womens-bags/women-handbag-black/2.webp',
+        'https://cdn.dummyjson.com/product-images/womens-bags/women-handbag-black/3.webp',
+        'https://cdn.dummyjson.com/product-images/womens-bags/women-handbag-black/thumbnail.webp',
+        'https://cdn.dummyjson.com/product-images/womens-bags/women-handbag-black/1.webp',
+      ],
       description: 'New luxury handbag added from the admin dashboard.',
       material: 'Premium leather',
       sizes: ['Small', 'Medium'],
@@ -45,7 +51,7 @@ export function AdminPage() {
             <select value={category} onChange={(event) => setCategory(event.target.value)} className="h-14 w-full rounded-full border border-[#ead7cb] bg-white px-4 text-sm outline-none dark:border-[#3b2d2a] dark:bg-[#251f1d] dark:text-[#f8efe9]">
               {categories.filter((item) => item !== 'All').map((item) => <option key={item} value={item}>{item}</option>)}
             </select>
-            <p className="text-sm text-[#6f5650] dark:text-[#e5cebd]">All women&apos;s bags: MRP ₹{REGULAR_PRICE}, offer price ₹{OFFER_PRICE}.</p>
+            <p className="text-sm text-[#6f5650] dark:text-[#e5cebd]">All women&apos;s bags are ₹{OFFER_PRICE} on offer; MRP varies by design.</p>
             <button type="button" onClick={handleAddProduct} className="h-14 w-full rounded-full bg-[#201814] text-sm font-medium uppercase tracking-[0.18em] text-[#f9efe8] dark:bg-[#f4e9de] dark:text-[#201814]">Add product</button>
           </div>
         </section>

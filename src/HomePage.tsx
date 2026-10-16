@@ -37,7 +37,7 @@ export function HomePage() {
         <img src={banner} alt="Kittu Studio trendy bags collection" className="w-full object-cover" />
         <div className="px-6 py-10 lg:px-12 lg:py-12">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.32em] text-[#7c6359] dark:text-[#efcdb4]">Women&apos;s bags • ₹999, now ₹499</p>
+            <p className="text-[11px] uppercase tracking-[0.32em] text-[#7c6359] dark:text-[#efcdb4]">Women&apos;s bags • Special price ₹499</p>
             <h1 className="mt-6 max-w-xl font-serif text-5xl leading-none text-[#271d1a] sm:text-6xl dark:text-[#f8efe7]">
               Modern heirlooms for grander days.
             </h1>

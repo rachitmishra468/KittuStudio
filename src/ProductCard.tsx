@@ -32,7 +32,7 @@ export function ProductCard({ product }: { product: Product }) {
           {isWishlisted(product.id) ? '♥' : '♡'}
         </button>
         <span className="absolute left-4 top-4 rounded-full bg-[#201814] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-white dark:bg-[#f5e8df] dark:text-[#201814]">
-          50% off
+          {Math.round((1 - product.price / product.originalPrice) * 100)}% off
         </span>
         {product.newArrival && (
           <span className="absolute bottom-4 left-4 rounded-full bg-[#f8f0ec] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[#7a5649] dark:bg-[#2f2421] dark:text-[#f5d7c9]">

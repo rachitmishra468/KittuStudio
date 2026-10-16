@@ -11,7 +11,7 @@ const links = [
 ]
 
 export function Navbar() {
-  const { cartCount, darkMode, toggleDarkMode, toggleCart, searchTerm, setSearchTerm } = useStore()
+  const { cartCount, darkMode, toggleDarkMode, toggleCart } = useStore()
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
@@ -37,17 +37,6 @@ export function Navbar() {
             </NavLink>
           ))}
         </nav>
-
-        <div className="hidden flex-1 justify-center px-6 lg:flex">
-          <div className="w-full max-w-md rounded-full border border-[#e7d9d1] bg-white/70 px-4 py-2.5 shadow-sm dark:border-[#392f2d] dark:bg-[#201916]">
-            <input
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Search handbags"
-              className="w-full bg-transparent text-sm text-[#312823] placeholder:text-[#8a6d63] outline-none dark:text-[#f8efe9]"
-            />
-          </div>
-        </div>
 
         <div className="flex items-center gap-3">
           <button
@@ -85,14 +74,6 @@ export function Navbar() {
 
       {mobileOpen && (
         <div className="border-t border-[#eadccf] bg-[#f8f0eb] px-4 py-4 lg:hidden dark:border-[#352b29] dark:bg-[#171211]">
-          <div className="mb-4 rounded-full border border-[#e7d9d1] bg-white/70 px-4 py-2.5 dark:border-[#392f2d] dark:bg-[#201916]">
-            <input
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Search handbags"
-              className="w-full bg-transparent text-sm text-[#312823] placeholder:text-[#8a6d63] outline-none dark:text-[#f8efe9]"
-            />
-          </div>
           <div className="flex flex-col gap-3 text-sm">
             {links.map((link) => (
               <NavLink key={link.to} to={link.to} onClick={() => setMobileOpen(false)} className="rounded-full border border-[#ecdaca] px-3 py-2 text-[#463b36] dark:border-[#352e2d] dark:text-[#f0e2d6]">
