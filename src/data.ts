@@ -4,6 +4,7 @@ export type Product = {
   name: string
   category: string
   price: number
+  originalPrice: number
   rating: number
   reviews: number
   images: string[]
@@ -17,13 +18,17 @@ export type Product = {
   bestSeller: boolean
 }
 
+export const REGULAR_PRICE = 999
+export const OFFER_PRICE = 499
+
 export const products: Product[] = [
   {
     id: 1,
     slug: 'sienna-structured-tote',
     name: 'Sienna Structured Tote',
     category: 'Totes',
-    price: 420,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.9,
     reviews: 182,
     images: [
@@ -46,7 +51,8 @@ export const products: Product[] = [
     slug: 'amelia-shoulder-bag',
     name: 'Amelia Shoulder Bag',
     category: 'Shoulder Bags',
-    price: 360,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.8,
     reviews: 136,
     images: [
@@ -69,7 +75,8 @@ export const products: Product[] = [
     slug: 'nora-chain-clutch',
     name: 'Nora Chain Clutch',
     category: 'Clutches',
-    price: 290,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.7,
     reviews: 98,
     images: [
@@ -92,7 +99,8 @@ export const products: Product[] = [
     slug: 'velvet-crescent-mini',
     name: 'Velvet Crescent Mini',
     category: 'Mini Bags',
-    price: 330,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.9,
     reviews: 220,
     images: [
@@ -115,7 +123,8 @@ export const products: Product[] = [
     slug: 'thea-hobo-bag',
     name: 'Thea Hobo Bag',
     category: 'Hobo Bags',
-    price: 440,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.8,
     reviews: 174,
     images: [
@@ -138,7 +147,8 @@ export const products: Product[] = [
     slug: 'lucia-travel-tote',
     name: 'Lucia Travel Tote',
     category: 'Travel',
-    price: 510,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.9,
     reviews: 193,
     images: [
@@ -161,7 +171,8 @@ export const products: Product[] = [
     slug: 'royal-frame-satchel',
     name: 'Royal Frame Satchel',
     category: 'Satchels',
-    price: 390,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.7,
     reviews: 121,
     images: [
@@ -184,7 +195,8 @@ export const products: Product[] = [
     slug: 'aria-ruffle-purse',
     name: 'Aria Ruffle Purse',
     category: 'Purses',
-    price: 305,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.6,
     reviews: 89,
     images: [
@@ -207,7 +219,8 @@ export const products: Product[] = [
     slug: 'sasha-zip-shoulder',
     name: 'Sasha Zip Shoulder',
     category: 'Shoulder Bags',
-    price: 375,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.8,
     reviews: 166,
     images: [
@@ -230,7 +243,8 @@ export const products: Product[] = [
     slug: 'isla-edition-weekender',
     name: 'Isla Edition Weekender',
     category: 'Travel',
-    price: 560,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 5,
     reviews: 140,
     images: [
@@ -253,7 +267,8 @@ export const products: Product[] = [
     slug: 'laney-croc-bag',
     name: 'Laney Croc Bag',
     category: 'Statement',
-    price: 470,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.8,
     reviews: 133,
     images: [
@@ -276,7 +291,8 @@ export const products: Product[] = [
     slug: 'beatrice-belt-bag',
     name: 'Beatrice Belt Bag',
     category: 'Crossbody',
-    price: 280,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.6,
     reviews: 78,
     images: [
@@ -299,7 +315,8 @@ export const products: Product[] = [
     slug: 'dahlia-box-purse',
     name: 'Dahlia Box Purse',
     category: 'Purses',
-    price: 340,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.7,
     reviews: 118,
     images: [
@@ -322,7 +339,8 @@ export const products: Product[] = [
     slug: 'mila-twist-wrap',
     name: 'Mila Twist Wrap',
     category: 'Wrap Bags',
-    price: 295,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.5,
     reviews: 64,
     images: [
@@ -345,7 +363,8 @@ export const products: Product[] = [
     slug: 'celeste-tote',
     name: 'Celeste Tote',
     category: 'Totes',
-    price: 430,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.8,
     reviews: 170,
     images: [
@@ -368,7 +387,8 @@ export const products: Product[] = [
     slug: 'vivienne-princess-bag',
     name: 'Vivienne Princess Bag',
     category: 'Statement',
-    price: 540,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.9,
     reviews: 145,
     images: [
@@ -391,7 +411,8 @@ export const products: Product[] = [
     slug: 'june-pouch-bag',
     name: 'June Pouch Bag',
     category: 'Pouches',
-    price: 260,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.5,
     reviews: 62,
     images: [
@@ -414,7 +435,8 @@ export const products: Product[] = [
     slug: 'nina-bucket-bag',
     name: 'Nina Bucket Bag',
     category: 'Bucket Bags',
-    price: 355,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.7,
     reviews: 102,
     images: [
@@ -437,7 +459,8 @@ export const products: Product[] = [
     slug: 'tara-madame-bag',
     name: 'Tara Madame Bag',
     category: 'Satchels',
-    price: 465,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.9,
     reviews: 151,
     images: [
@@ -460,7 +483,8 @@ export const products: Product[] = [
     slug: 'lola-luxe-sling',
     name: 'Lola Luxe Sling',
     category: 'Crossbody',
-    price: 318,
+    price: OFFER_PRICE,
+    originalPrice: REGULAR_PRICE,
     rating: 4.8,
     reviews: 111,
     images: [

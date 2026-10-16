@@ -74,7 +74,11 @@ export function ProductPage() {
               <span>★ {product.rating}</span>
               <span>({product.reviews} reviews)</span>
             </div>
-            <p className="mt-6 text-3xl font-semibold text-[#201814] dark:text-[#f9efe8]">{formatPrice(product.price)}</p>
+            <div className="mt-6 flex items-center gap-3">
+              <p className="text-3xl font-semibold text-[#201814] dark:text-[#f9efe8]">{formatPrice(product.price)}</p>
+              <p className="text-lg text-[#8e7770] line-through dark:text-[#c7aaa0]">{formatPrice(product.originalPrice)}</p>
+              <span className="rounded-full bg-[#f0dfd3] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#684739] dark:bg-[#392a26] dark:text-[#f3d5c3]">50% off</span>
+            </div>
 
             <div className="mt-8 space-y-6">
               <div>

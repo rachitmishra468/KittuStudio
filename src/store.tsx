@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { categories, products as initialProducts, type Product } from './data'
+import { categories, OFFER_PRICE, products as initialProducts, REGULAR_PRICE, type Product } from './data'
 
 type CartItem = {
   productId: number
@@ -61,14 +61,20 @@ const getStoredValue = <T,>(key: string, fallback: T): T => {
 }
 
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [products, setProducts] = useState<Product[]>(() => getStoredValue('kittu-catalog', initialProducts))
+  const [products, setProducts] = useState<Product[]>(() =>
+    getStoredValue<Product[]>('kittu-catalog', initialProducts).map((product) => ({
+      ...product,
+      price: OFFER_PRICE,
+      originalPrice: REGULAR_PRICE,
+    })),
+  )
   const [cart, setCart] = useState<CartItem[]>(() => getStoredValue('kittu-cart', []))
   const [wishlist, setWishlist] = useState<number[]>(() => getStoredValue('kittu-wishlist', []))
   const [darkMode, setDarkMode] = useState<boolean>(() => getStoredValue('kittu-dark-mode', false))
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [priceCap, setPriceCap] = useState(600)
+  const [priceCap, setPriceCap] = useState(OFFER_PRICE)
   const [sortBy, setSortBy] = useState<SortOption>('featured')
   const [toastMessage, setToastMessage] = useState<string | null>(null)
 
@@ -140,12 +146,19 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const toggleCart = () => setIsCartOpen((current) => !current)
 
   const addCatalogProduct = (product: Product) => {
-    setProducts((current) => [product, ...current])
+    setProducts((current) => [
+      { ...product, price: OFFER_PRICE, originalPrice: REGULAR_PRICE },
+      ...current,
+    ])
   }
 
   const updateCatalogProduct = (productId: number, updates: Partial<Product>) => {
     setProducts((current) =>
-      current.map((product) => (product.id === productId ? { ...product, ...updates } : product)),
+      current.map((product) =>
+        product.id === productId
+          ? { ...product, ...updates, price: OFFER_PRICE, originalPrice: REGULAR_PRICE }
+          : product,
+      ),
     )
   }
 

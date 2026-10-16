@@ -31,8 +31,11 @@ export function ProductCard({ product }: { product: Product }) {
         >
           {isWishlisted(product.id) ? '♥' : '♡'}
         </button>
+        <span className="absolute left-4 top-4 rounded-full bg-[#201814] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-white dark:bg-[#f5e8df] dark:text-[#201814]">
+          50% off
+        </span>
         {product.newArrival && (
-          <span className="absolute left-4 top-4 rounded-full bg-[#f8f0ec] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[#7a5649] dark:bg-[#2f2421] dark:text-[#f5d7c9]">
+          <span className="absolute bottom-4 left-4 rounded-full bg-[#f8f0ec] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[#7a5649] dark:bg-[#2f2421] dark:text-[#f5d7c9]">
             New
           </span>
         )}
@@ -48,9 +51,14 @@ export function ProductCard({ product }: { product: Product }) {
               {product.name}
             </Link>
           </div>
-          <span className="text-lg font-semibold text-[#2d201b] dark:text-[#f8f0ea]">
-            {formatPrice(product.price)}
-          </span>
+          <div className="text-right">
+            <span className="block text-xs text-[#8e7770] line-through dark:text-[#c7aaa0]">
+              {formatPrice(product.originalPrice)}
+            </span>
+            <span className="block text-lg font-semibold text-[#2d201b] dark:text-[#f8f0ea]">
+              {formatPrice(product.price)}
+            </span>
+          </div>
         </div>
 
         <div className="flex items-center justify-between gap-3">

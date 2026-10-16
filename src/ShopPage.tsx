@@ -16,7 +16,8 @@ export function ShopPage() {
     <div className="space-y-8">
       <section className="rounded-[32px] bg-[radial-gradient(circle_at_top,_rgba(248,240,235,0.95),_rgba(234,213,195,0.7))] p-8 dark:bg-[radial-gradient(circle_at_top,_rgba(34,21,18,0.96),_rgba(22,17,15,0.96))]">
         <p className="text-[11px] uppercase tracking-[0.28em] text-[#9a7d6a] dark:text-[#f0cdb2]">Luxury edit</p>
-        <h1 className="mt-4 font-serif text-5xl text-[#2b1f1b] dark:text-[#f9efe8]">Shop the collection</h1>
+        <h1 className="mt-4 font-serif text-5xl text-[#2b1f1b] dark:text-[#f9efe8]">Women&apos;s Bag Collection</h1>
+        <p className="mt-3 text-base text-[#594842] dark:text-[#e7d0c0]">Every bag ₹999, now ₹499.</p>
       </section>
 
       <div className="grid gap-8 lg:grid-cols-[290px_1fr]">
@@ -61,7 +62,7 @@ export function ShopPage() {
               <input
                 type="range"
                 min="200"
-                max="600"
+                max="499"
                 value={priceCap}
                 onChange={(event) => setPriceCap(Number(event.target.value))}
                 className="mt-3 w-full accent-[#322824] dark:accent-[#f3d6c5]"

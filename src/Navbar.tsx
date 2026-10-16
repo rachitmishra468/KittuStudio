@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useStore } from './store'
+import logo from './logo.jpg'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -17,9 +18,7 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-[#eadccf] bg-[#f9f3ee]/90 backdrop-blur-xl dark:border-[#352c2a] dark:bg-[#171211]/90">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <NavLink to="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2d9c5] text-lg font-bold text-[#3f2f2a] shadow-sm">
-            K
-          </div>
+          <img src={logo} alt="Kittu Studio logo" className="h-11 w-11 rounded-full object-cover shadow-sm" />
           <div>
             <p className="font-serif text-3xl leading-none text-[#2d201b] dark:text-[#f8efe8]">Kittu Studio</p>
           </div>

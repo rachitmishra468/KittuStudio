@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { categories, OFFER_PRICE, REGULAR_PRICE } from './data'
 import { useStore } from './store'
 
 export function AdminPage() {
-  const { products, addCatalogProduct, updateCatalogProduct, deleteCatalogProduct } = useStore()
+  const { products, addCatalogProduct, deleteCatalogProduct } = useStore()
   const [name, setName] = useState('')
   const [category, setCategory] = useState('Totes')
-  const [price, setPrice] = useState(420)
 
   const handleAddProduct = () => {
     addCatalogProduct({
@@ -13,7 +13,8 @@ export function AdminPage() {
       slug: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-new`,
       name,
       category,
-      price,
+      price: OFFER_PRICE,
+      originalPrice: REGULAR_PRICE,
       rating: 4.8,
       reviews: 0,
       images: ['https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80'],
@@ -41,8 +42,10 @@ export function AdminPage() {
           <p className="text-[11px] uppercase tracking-[0.28em] text-[#9f7b69] dark:text-[#efcab0]">Add product</p>
           <div className="mt-6 space-y-4">
             <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Product name" className="h-14 w-full rounded-full border border-[#ead7cb] bg-white px-4 text-sm outline-none dark:border-[#3b2d2a] dark:bg-[#251f1d] dark:text-[#f8efe9]" />
-            <input value={category} onChange={(event) => setCategory(event.target.value)} placeholder="Category" className="h-14 w-full rounded-full border border-[#ead7cb] bg-white px-4 text-sm outline-none dark:border-[#3b2d2a] dark:bg-[#251f1d] dark:text-[#f8efe9]" />
-            <input type="number" value={price} onChange={(event) => setPrice(Number(event.target.value))} placeholder="Price" className="h-14 w-full rounded-full border border-[#ead7cb] bg-white px-4 text-sm outline-none dark:border-[#3b2d2a] dark:bg-[#251f1d] dark:text-[#f8efe9]" />
+            <select value={category} onChange={(event) => setCategory(event.target.value)} className="h-14 w-full rounded-full border border-[#ead7cb] bg-white px-4 text-sm outline-none dark:border-[#3b2d2a] dark:bg-[#251f1d] dark:text-[#f8efe9]">
+              {categories.filter((item) => item !== 'All').map((item) => <option key={item} value={item}>{item}</option>)}
+            </select>
+            <p className="text-sm text-[#6f5650] dark:text-[#e5cebd]">All women&apos;s bags: MRP ₹{REGULAR_PRICE}, offer price ₹{OFFER_PRICE}.</p>
             <button type="button" onClick={handleAddProduct} className="h-14 w-full rounded-full bg-[#201814] text-sm font-medium uppercase tracking-[0.18em] text-[#f9efe8] dark:bg-[#f4e9de] dark:text-[#201814]">Add product</button>
           </div>
         </section>
@@ -53,10 +56,9 @@ export function AdminPage() {
             <div key={product.id} className="flex items-center justify-between gap-4 rounded-[22px] border border-[#efdfd5] bg-white p-4 dark:border-[#3d2d2a] dark:bg-[#211b1a]">
               <div>
                 <p className="text-lg font-medium text-[#2d201b] dark:text-[#f9efe8]">{product.name}</p>
-                <p className="mt-1 text-sm text-[#6f5650] dark:text-[#e5cebd]">{product.category} • ₹{product.price}</p>
+                <p className="mt-1 text-sm text-[#6f5650] dark:text-[#e5cebd]">{product.category} • ₹{product.originalPrice} → ₹{product.price}</p>
               </div>
               <div className="flex gap-2">
-                <button type="button" onClick={() => updateCatalogProduct(product.id, { price: product.price + 20 })} className="rounded-full border border-[#ead7cb] px-3 py-2 text-xs uppercase tracking-[0.18em] dark:border-[#3a2d2a]">Edit</button>
                 <button type="button" onClick={() => deleteCatalogProduct(product.id)} className="rounded-full border border-[#ead7cb] px-3 py-2 text-xs uppercase tracking-[0.18em] dark:border-[#3a2d2a]">Delete</button>
               </div>
             </div>

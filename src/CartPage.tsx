@@ -40,7 +40,10 @@ export function CartPage() {
                         <p className="text-[10px] uppercase tracking-[0.24em] text-[#9c7a68] dark:text-[#efcbb0]">{product.category}</p>
                         <h2 className="mt-2 text-xl font-semibold text-[#2d201b] dark:text-[#f8efe8]">{product.name}</h2>
                       </div>
-                      <p className="text-lg font-semibold text-[#201814] dark:text-[#f9efe8]">{formatPrice(product.price * item.quantity)}</p>
+                      <div className="text-right">
+                        <p className="text-xs text-[#8e7770] line-through dark:text-[#c7aaa0]">{formatPrice(product.originalPrice * item.quantity)}</p>
+                        <p className="text-lg font-semibold text-[#201814] dark:text-[#f9efe8]">{formatPrice(product.price * item.quantity)}</p>
+                      </div>
                     </div>
                     <div className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-2 rounded-full border border-[#ead6ca] px-2 py-1 dark:border-[#3d2d2a]">

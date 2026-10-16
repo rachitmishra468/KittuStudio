@@ -63,7 +63,10 @@ export function CartSidebar() {
                       </button>
                     </div>
                   </div>
-                  <p className="text-sm font-semibold text-[#2e1f1a] dark:text-[#f9efe9]">{formatPrice(product.price * item.quantity)}</p>
+                  <div className="text-right">
+                    <p className="text-xs text-[#8e7770] line-through dark:text-[#c7aaa0]">{formatPrice(product.originalPrice * item.quantity)}</p>
+                    <p className="text-sm font-semibold text-[#2e1f1a] dark:text-[#f9efe9]">{formatPrice(product.price * item.quantity)}</p>
+                  </div>
                 </div>
               )
             })

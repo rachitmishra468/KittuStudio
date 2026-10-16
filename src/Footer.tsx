@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import logo from './logo.jpg'
 
 export function Footer() {
   return (
@@ -7,9 +8,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2d9c5] text-lg font-bold text-[#3f2f2a]">
-                K
-              </div>
+              <img src={logo} alt="Kittu Studio logo" className="h-11 w-11 rounded-full object-cover" />
               <div>
                 <p className="font-serif text-3xl text-[#2f201d] dark:text-[#f4e3d7]">Kittu Studio</p>
               </div>
@@ -18,9 +17,9 @@ export function Footer() {
               Modern heirlooms for women who love to carry their confidence with quiet luxury and effortless femininity.
             </p>
             <div className="mt-5 flex gap-3 text-sm text-[#685650] dark:text-[#d9c2af]">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="rounded-full border border-[#e8d9d0] px-3 py-1.5 dark:border-[#3d2c29]">Instagram</a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="rounded-full border border-[#e8d9d0] px-3 py-1.5 dark:border-[#3d2c29]">Facebook</a>
-              <a href="https://pinterest.com" target="_blank" rel="noreferrer" className="rounded-full border border-[#e8d9d0] px-3 py-1.5 dark:border-[#3d2c29]">Pinterest</a>
+              <a href="https://www.instagram.com/kittu.studio?vrfl=bjI5NTU0cTVmdTd2" target="_blank" rel="noreferrer" className="rounded-full border border-[#e8d9d0] px-3 py-1.5 dark:border-[#3d2c29]">Instagram</a>
+              <a href="https://www.facebook.com/share/1EuKSfUrgd/" target="_blank" rel="noreferrer" className="rounded-full border border-[#e8d9d0] px-3 py-1.5 dark:border-[#3d2c29]">Facebook</a>
+              <a href="https://www.threads.com/@kittu.studio" target="_blank" rel="noreferrer" className="rounded-full border border-[#e8d9d0] px-3 py-1.5 dark:border-[#3d2c29]">Threads</a>
             </div>
           </div>
 

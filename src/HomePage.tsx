@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ProductCard } from './ProductCard'
 import { useStore } from './store'
+import banner from './banner.jpg'
 
 const testimonials = [
   {
@@ -33,9 +34,10 @@ export function HomePage() {
   return (
     <div className="space-y-16 pb-10">
       <section className="overflow-hidden rounded-[32px] bg-[radial-gradient(circle_at_top,_rgba(252,248,245,0.95),_rgba(236,221,210,0.95)_32%,_rgba(198,165,146,0.9))] shadow-[0_30px_80px_rgba(63,46,36,0.12)] dark:bg-[radial-gradient(circle_at_top,_rgba(43,31,29,0.96),_rgba(21,16,14,0.96)_48%,_rgba(34,27,24,0.96))]">
-        <div className="grid items-center gap-8 px-6 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:px-12 lg:py-16">
+        <img src={banner} alt="Kittu Studio trendy bags collection" className="w-full object-cover" />
+        <div className="px-6 py-10 lg:px-12 lg:py-12">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.32em] text-[#7c6359] dark:text-[#efcdb4]">Curated since 2020</p>
+            <p className="text-[11px] uppercase tracking-[0.32em] text-[#7c6359] dark:text-[#efcdb4]">Women&apos;s bags • ₹999, now ₹499</p>
             <h1 className="mt-6 max-w-xl font-serif text-5xl leading-none text-[#271d1a] sm:text-6xl dark:text-[#f8efe7]">
               Modern heirlooms for grander days.
             </h1>
@@ -65,15 +67,6 @@ export function HomePage() {
                 <span>dispatch</span>
               </div>
             </div>
-          </div>
-
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-x-8 bottom-4 top-12 rounded-[30px] bg-[#e5cfc2]/70 blur-2xl" />
-            <img
-              src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=80"
-              alt="Luxury handbag"
-              className="relative h-[560px] w-full max-w-[500px] rounded-[32px] object-cover shadow-[0_25px_60px_rgba(46,35,29,0.16)]"
-            />
           </div>
         </div>
       </section>
@@ -235,7 +228,7 @@ export function HomePage() {
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-[#a47d69] dark:text-[#efc9b0]">Instagram</p>
-            <h2 className="mt-3 font-serif text-4xl text-[#2d201b] dark:text-[#f9efe8]">@kittustudio</h2>
+            <a href="https://www.instagram.com/kittu.studio?vrfl=bjI5NTU0cTVmdTd2" target="_blank" rel="noreferrer" className="mt-3 inline-block font-serif text-4xl text-[#2d201b] hover:underline dark:text-[#f9efe8]">@kittu.studio</a>
           </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
